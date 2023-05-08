@@ -12,9 +12,13 @@ import org.springdoc.core.providers.SecurityOAuth2Provider;
 import org.springdoc.core.providers.SpringDocProviders;
 import org.springdoc.core.providers.SpringWebProvider;
 import org.springdoc.core.providers.WebConversionServiceProvider;
+import org.springdoc.core.service.GenericResponseService;
+import org.springdoc.webmvc.core.service.RequestService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
+@Import({RequestService.class, GenericResponseService.class})
 @Configuration
 public class SpringDocConfig {
 

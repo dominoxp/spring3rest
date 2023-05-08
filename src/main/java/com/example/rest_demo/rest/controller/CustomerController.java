@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("customer")
@@ -24,12 +23,12 @@ public class CustomerController {
      * @return customer
      */
     @GetMapping("blub")
-    public Mono<Customer> getCustomerById(String id) {
-        return Mono.just(new Customer(id, "hallo", Optional.of("welt"), TestType.Banana));
+    public Customer getCustomerById(String id) {
+        return new Customer(id, "hallo", Optional.of("welt"), TestType.Banana);
     }
 
     @PostMapping
-    public Mono<Void> testPost(@RequestParam String data, @RequestBody String body) {
-        return Mono.error(new ResponseStatusException(HttpStatusCode.valueOf(418)));
+    public void testPost(@RequestParam String data, @RequestBody String body) {
+        throw new ResponseStatusException(HttpStatusCode.valueOf(418));
     }
 }
